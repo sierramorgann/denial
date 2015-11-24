@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Oswald:400,700);
 
 body{
-	background-color: #027F62;
+	background-color: #000 !important;
 }
 
 img {
@@ -23,18 +23,30 @@ img {
   padding-left: 0;
 }
 
-.cathover {
-	background-color: #000;
-	opacity: 0.3;
-	padding-top: 1%; 
-	width: 100%;
-	height: 600px;
-	left: 10%;
-	z-index: 100;
+#title {
+	color: #fff;
+	opacity: 0.5;
 	font-size: 75px;
 	text-align: center;
 	font-family: 'Oswald', sans-serif;
-	color: #fff;
+}
+
+.cathover {
+	padding: 0;
+         margin: 0;
+         min-width: 100%!important;
+         background: #4c4c4c;
+         background: -moz-linear-gradient(top, #4c4c4c 0%, #666666 0%, #595959 15%, #111111 89%);
+         background: -webkit-linear-gradient(top, #4c4c4c 0%,#666666 0%,#595959 15%,#111111 89%);
+         background: linear-gradient(to bottom, #4c4c4c 0%,#666666 0%,#595959 15%,#111111 89%);
+         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#111111',GradientType=0 );
+
+	opacity: 0.9; 
+	width: 100%;
+	height: 650px;
+	left: 10%;
+	z-index: 100;
+	color: #808080;
 } 
 
 .cathover p {
@@ -44,6 +56,7 @@ img {
 	text-align: left;
 	font-family: lucida, sans-serif;
 	font-weight: 100;
+	color: #808080;
 }
 
 #tp {
@@ -60,13 +73,13 @@ img {
 
 .over {
 	background-color: #027F62;
-	opacity: 0.3;
+	opacity: 0.5;
 	position: absolute;
 	top: 0;
-	margin-top: 13%;
+	margin-top: 13.25%;
 	padding: 2%; 
 	width: 80%;
-	height: 150px;
+	height: 350px;
 	left: 10%;
 	z-index: 100;
 	font-size: 65px;
@@ -80,26 +93,10 @@ img {
 
 }
 
-.bapover {
-	background-color: #027F62;
-	opacity: 0.3;
-	position: absolute;
-	top: 0;
-	margin-top: 48%;
-	padding-top: 5.5%; 
-	width: 80%;
-	height: 500px;
-	left: 10%;
-	z-index: 100;
-	font-size: 100px;
-	text-align: center;
-	color: #fff;
-}
-
-.bapover p {
-	font-size: 50px;
-	padding: 0 5% 4% 5%;
-
+#faces {
+	padding: 0 10% 0 10%;
+	margin: 0;
+	font-size: 20px;
 }
 
 .clear {
