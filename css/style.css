@@ -74,6 +74,7 @@ img {
 	left: 10%;
 	z-index: 100;
 	font-size: 65px;
+	font-family: 'Oswald', sans-serif;
 	text-align: center;
 	color: #fff;
 }
@@ -81,6 +82,7 @@ img {
 .over p {
 	font-size: 50px;
 	padding: 0 5% 4% 5%;
+	font-family: lucida, sans-serif;
 
 }
 
