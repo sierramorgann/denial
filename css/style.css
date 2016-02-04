@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Oswald:400,700);
 
 body{
-	background-color: #fff;
+	background-color: #000;
 }
 
 img {
@@ -13,31 +13,21 @@ img {
 	width: 100%;
 }
 
-.row.no-gutters {
-  margin-right: 0;
-  margin-left: 0;
-}
-.row.no-gutters > [class^="col-"],
-.row.no-gutters > [class*=" col-"] {
-  padding-right: 0;
-  padding-left: 0;
-}
-
 #title {
 	color: #000;
-	opacity: 0.5;
-	font-size: 75px;
+	opacity: 0.4;
+	font-size: 50px;
 	text-align: center;
 	font-family: 'Oswald', sans-serif;
+	z-index: 500;
 }
 
-.cathover {
-	opacity: 0.9; 
-	width: 100%;
+.cathover { 
+	width: 70%;
 	height: 650px;
-	left: 10%;
-	z-index: 100;
-	color: #000;
+	margin-left: 15%;
+	margin-right: 15%;
+	background-color: #fff;
 } 
 
 .cathover p {
@@ -47,7 +37,8 @@ img {
 	text-align: left;
 	font-family: lucida, sans-serif;
 	font-weight: 100;
-	color: #808080;
+	color: #000;
+	opacity: 0.4;
 }
 
 #tp {
@@ -92,6 +83,19 @@ img {
 	font-size: 20px;
 }
 
-.clear {
-	clear: both;
+.pol {
+	-webkit-filter: invert(100%) opacity(50%);
+	-moz-filter: invert(100%);
 }
+
+.pol:hover {
+	-webkit-filter: invert(0%) opacity(1);
+	-moz-filter: invert(100%) opacity(25%);
+}
+
+.pol {
+	width: 25%;
+	float: left;
+	padding: 0;
+	margin: 0;
+}	
