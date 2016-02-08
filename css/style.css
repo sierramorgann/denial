@@ -1,108 +1,11 @@
-@import url(https://fonts.googleapis.com/css?family=Oswald:400,700);
-
-body{
+body {
 	background-color: #000;
 }
 
-img {
-	float: left;
-	z-index: 1;
-	margin: 0;
-	padding: 0;
-	position: relative;
-	width: 100%;
-}
-
-#title {
-	color: #000;
-	opacity: 0.4;
-	font-size: 50px;
-	text-align: center;
-	font-family: 'Oswald', sans-serif;
-	z-index: 500;
-}
-
-.cathover { 
-	width: 70%;
-	height: 650px;
-	margin-left: 15%;
-	margin-right: 15%;
-	background-color: #fff;
-} 
-
-.cathover p {
-	font-size: 20px;
-	padding: 1% 15% 1% 17%;
-	margin: 0;
-	text-align: left;
-	font-family: lucida, sans-serif;
-	font-weight: 100;
-	color: #000;
-	opacity: 0.4;
-}
-
-#tp {
-	font-family: 'Oswald', sans-serif;
-	font-weight: 400;
-	letter-spacing: 1px;
-	font-size: 30px;
-	text-align: center;
-}
-
-.wrapper {
-	position: relative;
-}
-
-.over {
-	background-color: #027F62;
-	opacity: 0.5;
-	position: absolute;
-	top: 0;
-	margin-top: 13.25%;
-	padding: 2%; 
-	width: 80%;
-	height: 350px;
-	left: 10%;
-	z-index: 100;
-	font-size: 65px;
-	font-family: 'Oswald', sans-serif;
-	text-align: center;
-	color: #fff;
-}
-
-.over p {
-	font-size: 50px;
-	padding: 0 5% 4% 5%;
-	font-family: lucida, sans-serif;
-
-}
-
-#faces {
-	padding: 0 10% 0 10%;
-	margin: 0;
-	font-size: 20px;
-}
-
-.pol {
-	-webkit-filter: invert(100%) opacity(50%);
-	-moz-filter: invert(100%);
-}
-
-.pol:hover {
-	-webkit-filter: invert(0%) opacity(1);
-	-moz-filter: invert(100%) opacity(25%);
-}
-
-.pol {
+.draggable {
 	width: 25%;
-	float: left;
-	padding: 0;
-	margin: 0;
+	z-index: 5;
 }
 
-.info {
-	position: absolute;
-	top: 0;
-	background-color: #fff;
-	display: none;
-}	
+
+
