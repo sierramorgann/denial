@@ -1,11 +1,33 @@
 body {
-	background-color: #000;
+	background-color: gray;
 }
 
 .draggable {
 	width: 25%;
-	z-index: 5;
+	float: left;
 }
+
+#speach {
+	position: relative;
+}
+
+#thought {
+	position: relative;
+}
+
+#output {
+	position: absolute;
+}
+
+#dragZone {
+	width: 100%;
+	height: 600px;
+	border: 2px solid;
+}
+
+
+
+
 
 
 
