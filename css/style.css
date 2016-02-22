@@ -3,26 +3,21 @@ body {
 }
 
 .draggable {
-	width: 25%;
 	float: left;
+	width: 12%;
 }
 
-#speach {
-	position: relative;
-}
-
-#thought {
-	position: relative;
-}
-
-#output {
-	position: absolute;
-}
-
-#dragZone {
+img {
 	width: 100%;
+}
+
+#droppable {
+	width: 80%;
+	margin: 0 10% 10% 10%;
 	height: 600px;
-	border: 2px solid;
+	position: relative;
+	float: left;
+	border: solid 2px;
 }
 
 
