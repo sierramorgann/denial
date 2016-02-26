@@ -33,14 +33,20 @@ $(document).ready(function(){
         });
     });
 
-    // $(function() {
-    //     var sub = $('#submit');
+    $(function() {
+        var sub = $('#th');
+        var sp = $('#sp');
+        var clear = $('#clear');
 
-    //     sub.click(function() {
-    //         var txt = $('#input1').val();
-    //         $('#output').html(txt);
-    //     });
-    // }); 
+        sub.click(function() {
+            var txt = $('#input1').val();
+            $('#thought').append(txt).addClass('output');
+        });
+        sp.click(function() {
+            var txt = $('#input1').val();
+            $('#speach').append(txt).addClass('output');
+        });
+    }); 
 
     $(window).load(function(){ // This runs when the window has loaded
         var img = $("<img />").attr('src', 'img/Trump.png').load(function() { 
@@ -82,35 +88,32 @@ $(document).ready(function(){
         var img10 = $("<img />").attr('src', 'img/thoughts.png').load(function() {
                 $("#thought").append(img10);
         });
-    });  
-    
-    $( "#droppable" ).droppable({
-      drop: function( event, ui ) {
-        $( this )
-          .addClass( "comic" );
-        }
-    });
 
-    $(function() { 
-        $("#btnSave").click(function() { 
-            html2canvas($(".comic"), {
-                onrendered: function(canvas) {
-                    theCanvas = canvas;
-                    document.body.appendChild(canvas);
-
-                    // Convert and download as image 
-                    Canvas2Image.saveAsPNG(canvas); 
-                    $("#img-out").append(canvas);
-                    // Clean up 
-                    // document.body.removeChild(canvas);
-                }
-            });
+        var img11 = $("<img />").attr('src', 'img/brickWall.png').load(function() {
+            $("#wall").append(img11);
         });
-    }); 
+
+        var img12 = $("<img />").attr('src', 'img/tnt.png').load(function() {
+            $("#tnt").append(img12);
+        }); 
+
+        var img13 = $("<img />").attr('src', 'img/ice.png').load(function() {
+            $("#ice").append(img13);
+        });               
+    });  
+
+    
+    var c = document.getElementById("droppable");
+
+
+    $('#btnSave').on('click', function() {
+        var img = $('#bb');
+        var ctx = c.getContext("experimental-webgl");
+        ctx.drawImage(img,10,10);
+
+        var photo = c.toDataURL();
+        document.write('<img src="'+photo+'"/>');
+    });
 });
-
-
-
-
 
 
