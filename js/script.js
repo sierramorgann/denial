@@ -99,7 +99,19 @@ $(document).ready(function(){
 
         var img13 = $("<img />").attr('src', 'img/ice.png').load(function() {
             $("#ice").append(img13);
-        });               
+        });   
+
+        var img14 = $("<img />").attr('src', 'img/donkey.png').load(function() {
+            $("#donkey").append(img14);
+        });  
+
+        var img15 = $("<img />").attr('src', 'img/Hillary.png').load(function() {
+            $("#hillary").append(img15);
+        }); 
+
+        var img16 = $("<img />").attr('src', 'img/Bernie.png').load(function() {
+            $("#bernie").append(img16);
+        });            
     });  
 
     
