@@ -36,16 +36,19 @@ $(document).ready(function(){
     $(function() {
         var sub = $('#th');
         var sp = $('#sp');
-        var clear = $('#clear');
+        var clear = $('#cle');
 
         sub.click(function() {
             var txt = $('#input1').val();
-            $('#thought').append(txt).addClass('output');
+            $('#thought').append("<p>"+txt+"</p>").addClass('output');
         });
         sp.click(function() {
-            var txt = $('#input1').val();
-            $('#speach').append(txt).addClass('output');
+            var txt = $('#input2').val();
+            $('#speach').append("<p>"+txt+"</p>").addClass('output');
         });
+        clear.click(function(){
+            
+        })
     }); 
 
     $(window).load(function(){ // This runs when the window has loaded
