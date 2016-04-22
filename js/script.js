@@ -1,134 +1,252 @@
 $(document).ready(function(){
-    $(function() {
-        var a = 3;
-            $('.draggable').draggable({
-                start: function(event, ui) { $(this).css("z-index", a++); }
-            });
-        $('#dragZone div').click(function() {
-            $(this).addClass('top').removeClass('bottom');
-            $(this).siblings().removeClass('top').addClass('bottom');
-            $(this).css("z-index", a++);
-        });    
-    });
 
-    $(function() {
-        // Change this selector to find whatever your 'boxes' are
-        var boxes = $(".draggable");
+    // $(function() {
+    //     var sub = $('#th');
+    //     var sp = $('#sp');
+    //     var clear = $('#cle');
+    //     var cle = $('#clear');
 
-        // Set up click handlers for each box
-        boxes.click(function() {
-            var el = $(this), // The box that was clicked
-                max = 0;
+    //     sub.click(function() {
+    //         var txt = $('#input1').val();
+    //         $('#thought').append("<p>"+txt+"</p>").addClass('output');
+    //     });
+    //     sp.click(function() {
+    //         var txt = $('#input2').val();
+    //         $('#speach').append("<p>"+txt+"</p>").addClass('output');
+    //     });
+    //     clear.click(function(){
+    //         $('.output p').empty();
+    //         $('#input1').val('');
+    //     })
+    //     cle.click(function() {
+    //         $('.output p').empty();
+    //         $('#input2').val('');
+    //     })
+    // }); 
 
-            // Find the highest z-index
-            boxes.each(function() {
-                // Find the current z-index value
-                var z = parseInt( $( this ).css( "z-index" ), 10 );
-                // Keep either the current max, or the current z-index, whichever is higher
-                max = Math.max( max, z );
-            });
+function Shape(x, y, w, h, fill) {
+  // This is a very simple and unsafe constructor. All we're doing is checking if the values exist.
+  // "x || 0" just means "if there is a value for x, use that. Otherwise use 0."
+  // But we aren't checking anything else! We could put "Lalala" for the value of x 
+  this.x = x || 0;
+  this.y = y || 0;
+  this.w = 78 || 0;
+  this.h = 78 || 0;
+  this.fill = fill || '#AAAAAA';
+}
 
-            // Set the box that was clicked to the highest z-index plus one
-            el.css("z-index", max + 1 );
-        });
-    });
-
-    $(function() {
-        var sub = $('#th');
-        var sp = $('#sp');
-        var clear = $('#cle');
-
-        sub.click(function() {
-            var txt = $('#input1').val();
-            $('#thought').append("<p>"+txt+"</p>").addClass('output');
-        });
-        sp.click(function() {
-            var txt = $('#input2').val();
-            $('#speach').append("<p>"+txt+"</p>").addClass('output');
-        });
-        clear.click(function(){
-            
-        })
-    }); 
-
-    $(window).load(function(){ // This runs when the window has loaded
-        var img = $("<img />").attr('src', 'img/Trump.png').load(function() { 
-                $("#trump").append(img); 
+// Draws this shape to a given context
+Shape.prototype.draw = function(ctx) {
+  // ctx.fillStyle = this.fill;
+  // ctx.fillRect(this.x, this.y, this.w, this.h);
+        var locx = this.x;
+        var locy = this.y;
+        var imgNew = new Image();
+        imgNew.onload = function(){ 
+            ctx.drawImage(imgNew, locx, locy);
+        }
+        var tn_array = $("#scroll img").map(function() {
+            return $(this).attr("src");
         });
 
-        var img2 = $("<img />").attr('src', 'img/wHouse.png').load(function() {
-                $("#wHouse").append(img2);
-        }); 
+        imgNew.src = tn_array[4], this.w, this.h;
+}
 
-        var img3 = $("<img />").attr('src', 'img/capHill.png').load(function() {
-                $("#capHill").append(img3);
-        });
+// Determine if a point is inside the shape's bounds
+Shape.prototype.contains = function(mx, my) {
+  // All we have to do is make sure the Mouse X,Y fall in the area between
+  // the shape's X and (X + Width) and its Y and (Y + Height)
+  return  (this.x <= mx) && (this.x + this.w >= mx) &&
+          (this.y <= my) && (this.y + this.h >= my);
+}
 
-        var img4 = $("<img />").attr('src', 'img/ele.png').load(function() {
-                $("#ele").append(img4);
-        }); 
+function CanvasState(canvas) {
+  // **** First some setup! ****
+  
+  this.canvas = canvas;
+  this.width = canvas.width;
+  this.height = canvas.height;
+  this.ctx = canvas.getContext('2d');
+  // This complicates things a little but fixes mouse co-ordinate problems
+  // when there's a border or padding. See getMouse for more detail
+  var stylePaddingLeft, stylePaddingTop, styleBorderLeft, styleBorderTop;
+  if (document.defaultView && document.defaultView.getComputedStyle) {
+    this.stylePaddingLeft = parseInt(document.defaultView.getComputedStyle(canvas, null)['paddingLeft'], 10)      || 0;
+    this.stylePaddingTop  = parseInt(document.defaultView.getComputedStyle(canvas, null)['paddingTop'], 10)       || 0;
+    this.styleBorderLeft  = parseInt(document.defaultView.getComputedStyle(canvas, null)['borderLeftWidth'], 10)  || 0;
+    this.styleBorderTop   = parseInt(document.defaultView.getComputedStyle(canvas, null)['borderTopWidth'], 10)   || 0;
+  }
+  // Some pages have fixed-position bars (like the stumbleupon bar) at the top or left of the page
+  // They will mess up mouse coordinates and this fixes that
+  var html = document.body.parentNode;
+  this.htmlTop = html.offsetTop;
+  this.htmlLeft = html.offsetLeft;
 
-        var img5 = $("<img />").attr('src', 'img/woman.png').load(function() {
-                $("#woman").append(img5);
-        }); 
+  // **** Keep track of state! ****
+  
+  this.valid = false; // when set to false, the canvas will redraw everything
+  this.shapes = [];  // the collection of things to be drawn
+  this.dragging = false; // Keep track of when we are dragging
+  // the current selected object. In the future we could turn this into an array for multiple selection
+  this.selection = null;
+  this.dragoffx = 0; // See mousedown and mousemove events for explanation
+  this.dragoffy = 0;
+  
+  // **** Then events! ****
+  
+  // This is an example of a closure!
+  // Right here "this" means the CanvasState. But we are making events on the Canvas itself,
+  // and when the events are fired on the canvas the variable "this" is going to mean the canvas!
+  // Since we still want to use this particular CanvasState in the events we have to save a reference to it.
+  // This is our reference!
+  var myState = this;
+  
+  //fixes a problem where double clicking causes text to get selected on the canvas
+  canvas.addEventListener('selectstart', function(e) { e.preventDefault(); return false; }, false);
+  // Up, down, and move are for dragging
+  canvas.addEventListener('mousedown', function(e) {
+    var mouse = myState.getMouse(e);
+    var mx = mouse.x;
+    var my = mouse.y;
+    var shapes = myState.shapes;
+    var l = shapes.length;
+    for (var i = l-1; i >= 0; i--) {
+      if (shapes[i].contains(mx, my)) {
+        var mySel = shapes[i];
+        // Keep track of where in the object we clicked
+        // so we can move it smoothly (see mousemove)
+        myState.dragoffx = mx - mySel.x;
+        myState.dragoffy = my - mySel.y;
+        myState.dragging = true;
+        myState.selection = mySel;
+        myState.valid = false;
+        return;
+      }
+    }
+    // havent returned means we have failed to select anything.
+    // If there was an object selected, we deselect it
+    if (myState.selection) {
+      myState.selection = null;
+      myState.valid = false; // Need to clear the old selection border
+    }
+  }, true);
+  canvas.addEventListener('mousemove', function(e) {
+    if (myState.dragging){
+      var mouse = myState.getMouse(e);
+      // We don't want to drag the object by its top-left corner, we want to drag it
+      // from where we clicked. Thats why we saved the offset and use it here
+      myState.selection.x = mouse.x - myState.dragoffx;
+      myState.selection.y = mouse.y - myState.dragoffy;   
+      myState.valid = false; // Something's dragging so we must redraw
+    }
+  }, true);
+  canvas.addEventListener('mouseup', function(e) {
+    myState.dragging = false;
+  }, true);
+  // double click for making new shapes
+  canvas.addEventListener('dblclick', function(e) {
+    var mouse = myState.getMouse(e);
+    myState.addShape(new Shape(mouse.x - 50, mouse.y - 50, 100, 100, 'rgba(0,255,0,.6)'));
+  }, true);
+  
+  // **** Options! ****
+  
+  this.selectionColor = '#000000';
+  this.selectionWidth = 0.5;  
+  this.interval = 30;
+  setInterval(function() { myState.draw(); }, myState.interval);
+}
 
-        var img6 = $("<img />").attr('src', 'img/boyz.png').load(function() {
-                $("#boyz").append(img6);
-        });    
+CanvasState.prototype.addShape = function(shape) {
+  this.shapes.push(shape);
+  this.valid = false;
+}
 
-        var img7 = $("<img />").attr('src', 'img/dino.png').load(function() {
-                $("#dino").append(img7);
-        });
+CanvasState.prototype.clear = function() {
+  this.ctx.clearRect(0, 0, this.width, this.height);
+}
 
-        var img8 = $("<img />").attr('src', 'img/bb.png').load(function() {
-                $("#bb").append(img8);
-        });
-
-        var img9 = $("<img />").attr('src', 'img/speach.png').load(function() {
-                $("#speach").append(img9);
-        });
-
-        var img10 = $("<img />").attr('src', 'img/thoughts.png').load(function() {
-                $("#thought").append(img10);
-        });
-
-        var img11 = $("<img />").attr('src', 'img/brickWall.png').load(function() {
-            $("#wall").append(img11);
-        });
-
-        var img12 = $("<img />").attr('src', 'img/tnt.png').load(function() {
-            $("#tnt").append(img12);
-        }); 
-
-        var img13 = $("<img />").attr('src', 'img/ice.png').load(function() {
-            $("#ice").append(img13);
-        });   
-
-        var img14 = $("<img />").attr('src', 'img/donkey.png').load(function() {
-            $("#donkey").append(img14);
-        });  
-
-        var img15 = $("<img />").attr('src', 'img/Hillary.png').load(function() {
-            $("#hillary").append(img15);
-        }); 
-
-        var img16 = $("<img />").attr('src', 'img/Bernie.png').load(function() {
-            $("#bernie").append(img16);
-        });            
-    });  
-
+// While draw is called as often as the INTERVAL variable demands,
+// It only ever does something if the canvas gets invalidated by our code
+CanvasState.prototype.draw = function() {
+  // if our state is invalid, redraw and validate!
+  if (!this.valid) {
+    var ctx = this.ctx;
+    var shapes = this.shapes;
+    this.clear();
     
-    var c = document.getElementById("droppable");
+    // ** Add stuff you want drawn in the background all the time here **
+    
+    // draw all shapes
+    var l = shapes.length;
+    for (var i = 0; i < l; i++) {
+      var shape = shapes[i];
+      // We can skip the drawing of elements that have moved off the screen:
+      if (shape.x > this.width || shape.y > this.height ||
+          shape.x + shape.w < 0 || shape.y + shape.h < 0) continue;
+      shapes[i].draw(ctx);
+    }
+    
+    // draw selection
+    // right now this is just a stroke along the edge of the selected Shape
+    if (this.selection != null) {
+      ctx.strokeStyle = this.selectionColor;
+      ctx.lineWidth = this.selectionWidth;
+      var mySel = this.selection;
+      ctx.strokeRect(mySel.x,mySel.y,mySel.w,mySel.h);
+    }
+    
+    // ** Add stuff you want drawn on top all the time here **
+    
+    this.valid = true;
+  }
+}
 
 
-    $('#btnSave').on('click', function() {
-        var img = $('#bb');
-        var ctx = c.getContext("experimental-webgl");
-        ctx.drawImage(img,10,10);
+// Creates an object with x and y defined, set to the mouse position relative to the state's canvas
+// If you wanna be super-correct this can be tricky, we have to worry about padding and borders
+CanvasState.prototype.getMouse = function(e) {
+  var element = this.canvas, offsetX = 0, offsetY = 0, mx, my;
+  
+  // Compute the total offset
+  if (element.offsetParent !== undefined) {
+    do {
+      offsetX += element.offsetLeft;
+      offsetY += element.offsetTop;
+    } while ((element = element.offsetParent));
+  }
 
-        var photo = c.toDataURL();
-        document.write('<img src="'+photo+'"/>');
-    });
+  // Add padding and border style widths to offset
+  // Also add the <html> offsets in case there's a position:fixed bar
+  offsetX += this.stylePaddingLeft + this.styleBorderLeft + this.htmlLeft;
+  offsetY += this.stylePaddingTop + this.styleBorderTop + this.htmlTop;
+
+  mx = e.pageX - offsetX;
+  my = e.pageY - offsetY;
+  
+  // We return a simple javascript object (a hash) with x and y defined
+  return {x: mx, y: my};
+}
+
+// If you dont want to use <body onLoad='init()'>
+// You could uncomment this init() reference and place the script reference inside the body tag
+init();
+
+function init() {
+  var s = new CanvasState(document.getElementById('canvas'));
+  s.addShape(new Shape(40,40,50,50)); // The default is gray
+  s.addShape(new Shape(60,140,40,60, 'lightskyblue'));
+  // Lets make some partially transparent
+  s.addShape(new Shape(80,150,60,30, 'rgba(127, 255, 212, .5)'));
+  s.addShape(new Shape(125,80,30,80, 'rgba(245, 222, 179, .7)'));
+}
+
+
+// SAVING THE CANVAS AS AN IMAGE!!!!!!!!!!!!!!!!!!!!!!!!
+$('#download').on('click', function(){
+        var canvas = document.getElementById("canvas");
+        var img = canvas.toDataURL("image/png");
+        document.write('<img src="'+img+'"/>');
 });
 
-
+});
