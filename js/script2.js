@@ -33,23 +33,49 @@ $(document).ready(function(){
         });
     });
 
-    $(function() {
-        var sub = $('#th');
-        var sp = $('#sp');
-        var clear = $('#cle');
+        $(function () {
+            $(".clicks").dblclick(function (e) {
+                e.stopPropagation();
+                var currentEle = $(e.target);
+                var value = $(e.target).html();
 
-        sub.click(function() {
-            var txt = $('#input1').val();
-            $('#thought').append("<p>"+txt+"</p>").addClass('output');
+                console.log($(e.target));
+
+                if ($.trim(value) === "") {
+                    $(currentEle).data('mode', 'add');
+                } else {
+                    $(currentEle).data('mode', 'edit');
+                }
+                updateVal(currentEle, value);
+            });
         });
-        sp.click(function() {
-            var txt = $('#input2').val();
-            $('#speach').append("<p>"+txt+"</p>").addClass('output');
+
+        function updateVal(currentEle, value) {
+
+            $(currentEle).html('<input class="thVal" type="text" value="' + value + '" />');
+
+            var mode = $(currentEle).data('mode');
+            // alert(mode);
+
+            $(".thVal").focus();
+            $(".thVal").keyup(function (event) {
+                if (event.keyCode == 13) {
+                    $(this).parent().html($(this).val().trim());
+                    $(".thVal").remove();
+                    $("#speach").append(this);
+                }
+            });
+        }
+
+        $(document).click(function (e) {
+            if ($(".thVal") !== undefined) {
+                if ($(".thVal").val() !== undefined) {
+                    $(".thVal").parent().html($(".thVal").val().trim());
+                    $(".thVal").remove();
+                }
+            }
         });
-        clear.click(function(){
-            
-        })
-    }); 
+    // });    
 
     $(window).load(function(){ // This runs when the window has loaded
         var img = $("<img />").attr('src', 'img/Trump.png').load(function() { 
