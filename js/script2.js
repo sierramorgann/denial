@@ -52,10 +52,11 @@ $(document).ready(function(){
 
         function updateVal(currentEle, value) {
 
-            $(currentEle).html('<input class="thVal" type="text" value="' + value + '" />');
+            $(currentEle).html('<input class="thVal" type="text" id="here" value="' + value + '" />');
 
-            var mode = $(currentEle).data('mode');
+            // var mode = $(currentEle).data('mode');
             // alert(mode);
+            // var here = $("#here").val();
 
             $(".thVal").focus();
             $(".thVal").keyup(function (event) {
@@ -67,14 +68,11 @@ $(document).ready(function(){
             });
         }
 
-        $(document).click(function (e) {
-            if ($(".thVal") !== undefined) {
-                if ($(".thVal").val() !== undefined) {
-                    $(".thVal").parent().html($(".thVal").val().trim());
-                    $(".thVal").remove();
-                }
-            }
-        });
+        $("#btnSave").on('click', function(){
+            $(".draggable").hide();
+            $(".clicks").hide();
+            $(".hidden").show();
+        })
     // });    
 
     $(window).load(function(){ // This runs when the window has loaded
@@ -142,17 +140,4 @@ $(document).ready(function(){
             $("#bernie").append(img16);
         });            
     });  
-
-    
-    var c = document.getElementById("droppable");
-
-
-    $('#btnSave').on('click', function() {
-        var img = $('#bb');
-        var ctx = c.getContext("experimental-webgl");
-        ctx.drawImage(img,10,10);
-
-        var photo = c.toDataURL();
-        document.write('<img src="'+photo+'"/>');
-    });
 });
