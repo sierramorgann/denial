@@ -80,11 +80,11 @@ $(document).ready(function(){
                 $("#trump").append(img); 
         });
 
-        var img2 = $("<img />").attr('src', 'img/wHouse.png').load(function() {
+        var img2 = $("<img />").attr('src', 'img/whouse.png').load(function() {
                 $("#wHouse").append(img2);
         }); 
 
-        var img3 = $("<img />").attr('src', 'img/capHill.png').load(function() {
+        var img3 = $("<img />").attr('src', 'img/caphill.png').load(function() {
                 $("#capHill").append(img3);
         });
 
