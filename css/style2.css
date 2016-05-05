@@ -34,7 +34,7 @@ h2 {
 	font-size: 120%;
 }
 .draggable {
-	width: 14%;
+	width: 12%;
 	float: left;
 }
 .c {
@@ -50,7 +50,7 @@ h2 {
 	width: 80%;
 	/*height: 232px;*/
 	padding: 0;
-	margin: 5% 10% 0 10%;
+	margin: 15% 10% 0 10%;
 }
 img {
 	width: 100%;
@@ -167,7 +167,7 @@ body {
 
 /* Portrait tablets and small desktops */
 @media (min-width: 768px) and (max-width: 991px) {
-	
+
 
 }
 
