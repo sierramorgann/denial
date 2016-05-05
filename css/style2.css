@@ -130,7 +130,45 @@ body {
 #tnt {
 	width: 8%;
 }
+/* Large desktops and laptops */
+@media (min-width: 1800px) {
+	#btnSave{
+		font-size: 200%;
+	}
+	#dir {
+		font-size: 200%;
+	}
+	.clicks {
+		font-size: 200%;
+	}
+	#clear {
+		font-size: 200%;
+	}
+	#thx {
+		font-size: 200%;
+	}
+}
 
+/* Landscape tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+	#btnSave{
+		font-size: 150%;
+	}
+	#dir {
+		font-size: 150%;
+	}
+	.clicks {
+		font-size: 150%;
+	}
+	#clear {
+		font-size: 150%;
+	}
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+
+}
 
 
 
