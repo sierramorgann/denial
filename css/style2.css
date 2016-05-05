@@ -34,13 +34,12 @@ h2 {
 	font-size: 120%;
 }
 .draggable {
-	width: 10%;
+	width: 14%;
 	float: left;
 }
 .c {
 	width: 100%;
 	float: left;
-	margin: 5% 0 0 10%;
 }
 .cc {
 	width: 100%;
@@ -57,13 +56,12 @@ img {
 	width: 100%;
 }
 #btnSave { 
-	width: 42%;
-	margin: 0 29% 0 29%;
+	margin: 0 30% 0 35%;
 	padding: 1%;
 	text-align: center;
 	background-color: #fff;
 	color: #000;
-	font-size: 100%;
+	font-size: 90%;
 	border-color: #000;
 	border-style: solid;
 	border-width: 0.5px;
@@ -74,6 +72,10 @@ img {
 #btnSave:hover {
 	background-color: rgba(0,0,0,0.1);
 	cursor: pointer;
+}
+body {
+	padding: 0;
+	margin: 0;
 }
 #clear {
 	margin: 1% 2% 1% 2%;
@@ -107,6 +109,31 @@ img {
 #thx{
 	padding: 25% 5% 25% 5%;
 }
+#thought {
+	width: 20%;
+}
+#speach {
+	width: 20%;
+}
+#bb {
+	width: 15%;
+}
+#boyz {
+	width: 18%;
+}
+#dino {
+	width: 15%;
+}
+#ice {
+	width: 8%;
+}
+#tnt {
+	width: 8%;
+}
+
+
+
+
 
 
 

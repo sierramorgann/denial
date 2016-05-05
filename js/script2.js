@@ -38,7 +38,6 @@ $(document).ready(function(){
                 e.stopPropagation();
                 var currentEle = $(e.target);
                 var value = $(e.target).html();
-
                 console.log($(e.target));
 
                 if ($.trim(value) === "") {
@@ -63,7 +62,8 @@ $(document).ready(function(){
                 if (event.keyCode == 13) {
                     $(this).parent().html($(this).val().trim());
                     $(".thVal").remove();
-                    $("#speach").append(this);
+                    $("#speach").append($("#sub").css({'position': 'absolute', 'top': '5%', 'left': '43%', 'width': '45%'}));
+                    $("#thought").append($("#sup").css({'position': 'absolute', 'top': '10%', 'left': '44%', 'width': '45%'}));
                 }
             });
         }
