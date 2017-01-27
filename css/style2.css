@@ -1,5 +1,8 @@
 body {
 	background-color: rgba(255,255,255,1);
+	font-family: sans-serif;
+	padding: 0;
+	margin: 0;
 }
 .topImg {
 	width: 30%;
@@ -17,7 +20,6 @@ h1 {
 	letter-spacing: 3px;
 	color: #000;
 	line-height: 3px;
-	font-family: georgia;
 }
 h2 {
 	text-align: center;
@@ -25,12 +27,9 @@ h2 {
 	padding: 0;
 	margin: 0;
 	color: #000;
-	font-family: Garamond, Times;
-	font-weight: bold;
 }
 #dir {
 	text-align: center;
-	font-family: Garamond, Times;
 	font-size: 120%;
 }
 .draggable {
@@ -50,13 +49,13 @@ h2 {
 	width: 80%;
 	/*height: 232px;*/
 	padding: 0;
-	margin: 15% 10% 0 10%;
+	margin: 0% 10% 0 10%;
 }
 img {
 	width: 100%;
 }
 #btnSave { 
-	margin: 0 30% 0 35%;
+	margin: 0 0 3% 3%;
 	padding: 1%;
 	text-align: center;
 	background-color: #fff;
@@ -66,16 +65,11 @@ img {
 	border-style: solid;
 	border-width: 0.5px;
 	border-radius: 5px;
-	font-family: Garamond, Times;
 	display: inline-block;
 }
 #btnSave:hover {
 	background-color: rgba(0,0,0,0.1);
 	cursor: pointer;
-}
-body {
-	padding: 0;
-	margin: 0;
 }
 #clear {
 	margin: 1% 2% 1% 2%;
@@ -86,7 +80,6 @@ body {
 	background-color: #fff;
 	color: #000;
 	border-radius: 8%;
-	font-family: Garamond, Times;
 	text-decoration: none;	
 }
 .output p {

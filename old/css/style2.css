@@ -1,0 +1,178 @@
+body {
+	background-color: rgba(255,255,255,1);
+}
+#t {
+	margin: 5% 10% 0 10%;
+	width: 75%;
+}
+h1 {
+	text-align: center;
+	font-size: 450%;
+	padding: 8% 0;
+	margin: 0;
+	letter-spacing: 3px;
+	color: #000;
+	line-height: 3px;
+	font-family: georgia;
+}
+h2 {
+	text-align: center;
+	font-size: 100%;
+	padding: 0;
+	margin: 0;
+	color: #000;
+	font-family: Garamond, Times;
+	font-weight: bold;
+}
+#dir {
+	text-align: center;
+	font-family: Garamond, Times;
+	font-size: 120%;
+}
+.draggable {
+	width: 12%;
+	float: left;
+}
+.c {
+	width: 100%;
+	float: left;
+}
+.cc {
+	width: 100%;
+	float: left;
+	margin-left: 10%;
+}
+.can {
+	width: 80%;
+	/*height: 232px;*/
+	padding: 0;
+	margin: 15% 10% 0 10%;
+}
+img {
+	width: 100%;
+}
+#btnSave { 
+	margin: 0 30% 0 35%;
+	padding: 1%;
+	text-align: center;
+	background-color: #fff;
+	color: #000;
+	font-size: 90%;
+	border-color: #000;
+	border-style: solid;
+	border-width: 0.5px;
+	border-radius: 5px;
+	font-family: Garamond, Times;
+	display: inline-block;
+}
+#btnSave:hover {
+	background-color: rgba(0,0,0,0.1);
+	cursor: pointer;
+}
+body {
+	padding: 0;
+	margin: 0;
+}
+#clear {
+	margin: 1% 2% 1% 2%;
+	display: inline-block;
+	width: 5%;
+	padding: 1%;
+	text-align: center;
+	background-color: #fff;
+	color: #000;
+	border-radius: 8%;
+	font-family: Garamond, Times;
+	text-decoration: none;	
+}
+.output p {
+	position: absolute;
+	top: 5%;
+	left: 45%;
+	font-size: 11px;
+	font-family: sans-serif;
+	color: #000;
+}
+.hidden{
+	display: none;
+	width: 50%;
+	margin: 0 25% 25% 25%;
+	text-align: center;
+	border-color: #000;
+	border-width: 0.25px;
+	border-style: solid;
+}
+#thx{
+	padding: 25% 5% 25% 5%;
+}
+#thought {
+	width: 20%;
+}
+#speach {
+	width: 20%;
+}
+#bb {
+	width: 15%;
+}
+#boyz {
+	width: 18%;
+}
+#dino {
+	width: 15%;
+}
+#ice {
+	width: 8%;
+}
+#tnt {
+	width: 8%;
+}
+/* Large desktops and laptops */
+@media (min-width: 1800px) {
+	#btnSave{
+		font-size: 200%;
+	}
+	#dir {
+		font-size: 200%;
+	}
+	.clicks {
+		font-size: 200%;
+	}
+	#clear {
+		font-size: 200%;
+	}
+	#thx {
+		font-size: 200%;
+	}
+}
+
+/* Landscape tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+	#btnSave{
+		font-size: 150%;
+	}
+	#dir {
+		font-size: 150%;
+	}
+	.clicks {
+		font-size: 150%;
+	}
+	#clear {
+		font-size: 150%;
+	}
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+
+
+}
+
+
+
+
+
+
+
+
+
+
