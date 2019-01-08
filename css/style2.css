@@ -1,6 +1,6 @@
 body {
 	background-color: rgba(255,255,255,1);
-	font-family: sans-serif;
+	font-family: serif;
 	padding: 0;
 	margin: 0;
 }
@@ -28,9 +28,24 @@ h2 {
 	margin: 0;
 	color: #000;
 }
+.clicks {
+	font-size: 18px;
+}
+#sub {
+	position: absolute;
+	top: 25%;
+	left: 37%;
+	width: 44%;
+}
+#subtitle {
+	position: absolute;
+	top: 20%;
+	left: 53%;
+	width: 38%;
+}
 #dir {
 	text-align: center;
-	font-size: 120%;
+	font-size: 34px;
 }
 .draggable {
 	width: 12%;
@@ -47,7 +62,7 @@ h2 {
 }
 .can {
 	width: 80%;
-	/*height: 232px;*/
+	height: 25px;
 	padding: 0;
 	margin: 0% 10% 0 10%;
 }
@@ -124,44 +139,51 @@ img {
 	width: 8%;
 }
 /* Large desktops and laptops */
-@media (min-width: 1800px) {
-	#btnSave{
-		font-size: 200%;
-	}
+@media (max-width: 1800px) {
 	#dir {
-		font-size: 200%;
-	}
-	.clicks {
-		font-size: 200%;
+		font-size: 20px;
 	}
 	#clear {
 		font-size: 200%;
 	}
-	#thx {
-		font-size: 200%;
-	}
 }
-
-/* Landscape tablets and medium desktops */
-@media (min-width: 992px) and (max-width: 1199px) {
-	#btnSave{
-		font-size: 150%;
-	}
-	#dir {
-		font-size: 150%;
-	}
+@media (max-width: 1024px) {
 	.clicks {
-		font-size: 150%;
+		font-size: 14px;
 	}
-	#clear {
-		font-size: 150%;
+	#sub {
+		top: 25%;
+	}
+	#subtitle {
+		top: 20%;
 	}
 }
-
-/* Portrait tablets and small desktops */
-@media (min-width: 768px) and (max-width: 991px) {
-
-
+@media (max-width: 768px) {
+	.clicks {
+		font-size: 8px;
+	}
+	#sub {
+		top: 25%;
+	}
+	#subtitle {
+		top: 25%;
+	}
+}
+@media (max-width: 425px) {
+	.clicks {
+		font-size: 8px;
+	}
+	#sub {
+		top: 25%;
+	}
+	#subtitle {
+		top: 12%;
+	}
+}
+@media (max-width: 375px) {
+	.clicks {
+		font-size: 7px;
+	}
 }
 
 
