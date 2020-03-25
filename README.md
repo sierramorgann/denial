@@ -1,1 +1,1 @@
-http://sierrammorgan.com/denial/
+https://sierrammorgan.com/denial/
